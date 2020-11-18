@@ -12,7 +12,6 @@ import java.util.Random;
 数字。例如，如果输入长度为7的数组{2，3，1，0，2，5，3}，那么对应的输出是重复的
 数字2或者3。
  */
-
 public class Exercise001 {
 
     public static void main(String[] args) {
