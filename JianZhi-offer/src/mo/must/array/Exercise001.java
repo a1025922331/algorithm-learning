@@ -23,6 +23,7 @@ public class Exercise001 {
         int[] array2 = new int[size];
         int[] array3 = new int[size];
 
+        //设置循环次数
         int times = 1;
 
         long start = System.currentTimeMillis();
