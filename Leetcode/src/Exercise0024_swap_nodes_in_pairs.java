@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Exercise0024_swap_nodes_in_pairs {
     private class ListNode {
         int val;
@@ -17,11 +19,11 @@ public class Exercise0024_swap_nodes_in_pairs {
     }
 
     public ListNode swapPairs(ListNode head) {
-        ListNode pointer = head;
-        while(pointer == null || pointer.next == null) {
-            ListNode temp = pointer.next;
-            pointer.next = pointer.next.next;
-            temp.next = pointer;
+        ListNode dummyHead = new ListNode();
+        dummyHead.next = head;
+        ListNode pre = dummyHead;
+        ListNode node1 = pre.next, node2;
+        while(node1 != null && node1.next != null) {
 
         }
 
