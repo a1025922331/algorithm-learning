@@ -51,6 +51,7 @@ public class Exercise0206_reverse_linked_list {
         head.next.next = head; //把链表方向反过来
         head.next = null; //1、原先的第一个结点的next应为null 2、其它结点的next会在归的过程中重新赋值，即上一条语句
         return newHead;
+
     }
 
 //    // 3. 迭代 O(n)、O(n)
