@@ -28,12 +28,12 @@ public class Exercise0141_linked_list_cycle {
 //    public boolean hasCycle(ListNode head) {
 //        if (head == null || head.next == null)
 //            return false;
-//        ListNode quickPointer = head.next, slowedPointer = head;
-//        while (quickPointer != null && quickPointer.next != null) {
-//            if (quickPointer == slowedPointer)
+//        ListNode fastPointer = head.next, slowPointer = head;
+//        while (fastPointer != null && fastPointer.next != null) {
+//            if (fastPointer == slowPointer)
 //                return true;
-//            slowedPointer = slowedPointer.next;
-//            quickPointer = quickPointer.next.next;
+//            slowPointer = slowPointer.next;
+//            fastPointer = fasePointer.next.next;
 //        }
 //        return false;
 //    }
