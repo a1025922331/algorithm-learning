@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-public class Exercise0242_submissions {
+public class Exercise0242_valid_anagram {
     // 3.进阶，hashMap
     public boolean isAnagram(String s, String t) {
         if (s != null && t != null && s.length() == t.length()) {
