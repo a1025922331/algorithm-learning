@@ -21,7 +21,7 @@ public class Exercise0111_minimum_depth_of_binary_tree {
         }
     }
 
-//    // 广度优先搜索
+//    // 广度优先搜索，遍历到第一个叶子结点就可以停止了
 //    // 当我们找到一个叶子节点时，直接返回这个叶子节点的深度。广度优先搜索的性质保证了最先搜索到的叶子节点的深度一定最小
 //    public int minDepth(TreeNode root) {
 //        int depth = 0;
@@ -45,7 +45,7 @@ public class Exercise0111_minimum_depth_of_binary_tree {
 //        return depth;
 //    }
 
-    // 深度优先搜索
+    // 深度优先搜索, 需要遍历完才能知道结果
     public int minDepth(TreeNode root) {
         if (root == null)
             return 0;
