@@ -32,5 +32,7 @@ public class Test {
         set2.add(Arrays.asList(1,2,3));
 
         System.out.println(set2);
+
+        System.out.println(-2 % 4);
     }
 }

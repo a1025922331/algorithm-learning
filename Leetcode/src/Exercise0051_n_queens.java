@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-p
+
 public class Exercise0051_n_queens {
     // 回溯法求解
     // 时间复杂度：O(n!)
