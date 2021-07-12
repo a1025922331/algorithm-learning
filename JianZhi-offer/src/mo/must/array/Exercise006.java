@@ -3,16 +3,15 @@ package mo.must.array;
 import java.util.ArrayList;
 import java.util.Stack;
 
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode(int x) {
-        val = x;
-    }
-}
-
 public class Exercise006 {
+    class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+        }
+    }
     public int[] reversePrint(ListNode head) {
         //使用集合
 //        ArrayList<Integer> list = new ArrayList<>();

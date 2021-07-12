@@ -8,7 +8,7 @@ public class Exercise0912_sort_an_array {
 //        partition(nums, 0, nums.length - 1);
 //        return nums;
 //    }
-//
+
 //    private void partition(int[] nums, int low, int high) {
 //        // 边界条件
 //        if (low >= high)
@@ -68,27 +68,26 @@ public class Exercise0912_sort_an_array {
 //        return nums;
 //    }
 
-    // 3.折半插入排序(稳定)
-    // 时间: O(n^2),
-    // 空间: O(1),
-    public int[] sortArray(int[] nums) {
-        for (int i = 1; i < nums.length; i++) {
-            int temp = nums[i], low = 0, high = i - 1;
-            while (low <= high) {
-                int mid = (low + high) / 2;
-                if (nums[mid] > temp)
-                    high = mid - 1;
-                else
-                    low = mid + 1;
-            }
-            // 插在high后面
-            for (int j = i - 1; j >= high + 1; j--)
-                nums[j + 1] = nums[j];
-            nums[high + 1] = temp;
-        }
-//        System.out.println(Arrays.toString(nums));
-        return nums;
-    }
+//    // 3.折半插入排序(稳定)
+//    // 时间: O(n^2),
+//    // 空间: O(1),
+//    public int[] sortArray(int[] nums) {
+//        for (int i = 1; i < nums.length; i++) {
+//            int temp = nums[i], low = 0, high = i - 1;
+//            while (low <= high) {
+//                int mid = (low + high) / 2;
+//                if (nums[mid] > temp)
+//                    high = mid - 1;
+//                else
+//                    low = mid + 1;
+//            }
+//            // 插在high后面
+//            for (int j = i - 1; j >= high + 1; j--)
+//                nums[j + 1] = nums[j];
+//            nums[high + 1] = temp;
+//        }
+//        return nums;
+//    }
 
 //    // 4.简单选择排序(不稳定)
 //    // 时间: O(n^2),
@@ -110,4 +109,27 @@ public class Exercise0912_sort_an_array {
 //        }
 //        return nums;
 //    }
+
+    // 5.归并排序
+    public int[] sortArray(int[] nums) {
+        mergeSort(nums, 0, nums.length - 1);
+        return nums;
+    }
+
+    private void mergeSort(int[] nums, int left, int right) {
+        if (left >= right)
+            return;
+        int mid = (left + right) >> 1;
+        mergeSort(nums, left, mid);
+        mergeSort(nums, mid + 1, right);
+
+        int[] temp = new int[right - left + 1];
+        int i = left, j = mid + 1, k = 0;
+        while (i <= mid && j <= right){
+            temp[k++] = nums[i] < nums[j]? nums[i++]: nums[j++];
+        }
+        while (i <= mid) temp[k++] = nums[i++];
+        while (j <= right) temp[k++] = nums[j++];
+        System.arraycopy(temp, 0, nums, left, right - left + 1);
+    }
 }

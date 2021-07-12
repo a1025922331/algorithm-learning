@@ -1,24 +1,52 @@
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 //无重复字符的字符串
 public class Exercise0003 {
-    public static void main(String[] args) {
-        System.out.println(lengthOfLongestSubstring("tmmzuxt"));
+
+    //2021.07.11
+    public int lengthOfLongestSubstring(String s) {
+        char[] chars = s.toCharArray();
+        int max = 0;
+        int index = 0;
+
+        // Hash Map版本
+//        Map<Character, Integer> map = new HashMap<>();
+//        for (int i = 0; i < chars.length; i++) {
+//            if (map.containsKey(chars[i]) && map.get(chars[i]) >= index) {
+//                index = map.get(chars[i]) + 1;
+//            }
+//            map.put(chars[i], i);
+//            max = Math.max(max, i - index + 1);
+//        }
+
+        // 数组版
+        int[] ascii = new int[128];
+        Arrays.fill(ascii, -1);
+        for (int i = 0; i < chars.length; i++) {
+            if (ascii[chars[i]] >= index) {
+                index = ascii[chars[i]] + 1;
+            }
+            ascii[chars[i]] = i;
+            max = Math.max(max, i - index + 1);
+        }
+
+        return max;
     }
 
-    //思路:模拟人解题的过程,滑动窗口的思想
-    public static int lengthOfLongestSubstring(String s) {
-        //95.24% 57.60%
-        return myMethod(s);
-        //100% 96.43%
-        // return answerMethod(s);
-
-    }
+//    //思路:模拟人解题的过程,滑动窗口的思想
+//    public static int lengthOfLongestSubstring(String s) {
+//        //95.24% 57.60%
+//        return myMethod(s);
+//        //100% 96.43%
+//        // return answerMethod(s);
+//
+//    }
 
     private static int myMethod(String s) {
         int len = s.length();
-        char[] chars = new char[len];
-        chars = s.toCharArray();
+        char[] chars = s.toCharArray();
         boolean[] ascii = new boolean[128];
         Arrays.fill(ascii, false);
 

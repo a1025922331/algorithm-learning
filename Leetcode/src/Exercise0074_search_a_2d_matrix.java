@@ -1,4 +1,4 @@
-public class Exercise_0074_search_a_2d_matrix {
+public class Exercise0074_search_a_2d_matrix {
 //    //直接二分 O(log(mn))
 //    public boolean searchMatrix(int[][] matrix, int target) {
 //        if (matrix == null)
