@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import org.junit.Test;
 
 public class Exercise0049_submissions {
 //    // 1.O(nklogk) 将各字符串排序作为key进行哈希分桶
@@ -21,7 +20,6 @@ public class Exercise0049_submissions {
 //        }
 //        return new ArrayList(hashMap.values());
 //    }
-    @Test
     public void test(){
         int[] arrays = new int[4];
         System.out.println(arrays);

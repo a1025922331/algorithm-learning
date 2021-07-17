@@ -4,10 +4,8 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.util.Stack;
 
-import org.junit.Test;
 
 public class Exercise0084_largest_rectangle_in_histogram {
-    @Test
     public void test() {
         System.out.println(largestRectangleArea(new int[]{2, 5}));
     }

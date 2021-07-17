@@ -1,4 +1,3 @@
-import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -28,7 +27,6 @@ public class Exercise1143_longest_common_subsequence {
 
     //方法2：2^n，先生成两个字符串的所有的最短子序列，再比较长度
     //超时
-    @Test
     public void test() {
         long point1 = System.currentTimeMillis();
         System.out.println(longestCommonSubsequence("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
