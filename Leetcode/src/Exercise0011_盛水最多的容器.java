@@ -4,7 +4,7 @@
 // 找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。
 //
 
-public class Exercise0011 {
+public class Exercise0011_盛水最多的容器 {
     // O(n) 2.左右夹逼，双指针问题 （优化：去掉不必要的比较）
     public int maxArea(int[] height) {
         int max = 0;

@@ -1,8 +1,37 @@
 import java.util.*;
 
-public class Exercise0015_3sum {
-    // 3. O(n^2) 哈希表（此处用哈希不好去重）
+public class Exercise0015_三数之和 {
+    // 2. O(n^2) 双指针 (加了去重)
+    // 只看这个这个就好，排序 + 夹逼
     public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> result = new LinkedList<>();
+        if (nums != null && nums.length >= 3) {
+            Arrays.sort(nums);
+            for (int i = 0; i < nums.length - 2;) {
+                if (nums[i] > 0) {
+                    return result;
+                }
+                //夹逼
+                for (int j = i + 1, k = nums.length - 1; j < k;){
+                    int target = nums[i] + nums[j] + nums[k];
+                    if (target < 0 ) {
+                        do {j++;} while(nums[j] == nums[j - 1] && j < k);
+                    } else if (target > 0){
+                        do {k--;} while(nums[k] == nums[k + 1] && j < k);
+                    } else {
+                        result.add(Arrays.asList(nums[i], nums[j], nums[k]));
+                        do {j++;} while(nums[j] == nums[j - 1] && j < k);
+                        do {k--;} while(nums[k] == nums[k + 1] && j < k);
+                    }
+                }
+                do {i++;} while (nums[i] == nums[i - 1] && i < nums.length - 2);
+            }
+        }
+        return result;
+    }
+
+    // 3. O(n^2) 自己写的哈希方法（此处用哈希不好去重）(别看了，shi一样的代码，剪枝没剪干净，还是需要用set去重)
+    public List<List<Integer>> threeSum2(int[] nums) {
         // 一遍哈希的中间存储
         HashMap<Integer, HashSet<Integer>> hashMap = new HashMap<>();
         // 结果，用set来去重
@@ -21,37 +50,33 @@ public class Exercise0015_3sum {
             Arrays.sort(nums);
             // target
             for (int i = 0; i < nums.length; i++) {
-                if (hashMap.containsKey(0 - nums[i])) {
-                    HashSet<Integer> integers = hashMap.get(0 - nums[i]);
-                    integers.add(i);
-                    hashMap.put(0 - nums[i], integers);
-                } else {
-                    HashSet<Integer> integers = new HashSet<Integer>();
-                    integers.add(i);
-                    hashMap.put(0 - nums[i], integers);
+                if (!hashMap.containsKey(0 - nums[i])) {
+                    hashMap.put(0 - nums[i], new HashSet<>());
                 }
+                HashSet<Integer> indexS = hashMap.get(0 - nums[i]);
+                indexS.add(i);
+                hashMap.put(0 - nums[i], indexS);
             }
             // 两层for
             for (int i = 0; i < nums.length - 1; i++) {
                 for (int j = i + 1; j < nums.length; j++) {
                     int temp = nums[i] + nums[j];
                     if (hashMap.containsKey(temp)) {
-                        HashSet<Integer> integers = hashMap.get(temp);
-                        if (integers.contains(i)) {
-                            integers.remove(i);
-                            if (integers.isEmpty()) {
-                                integers.add(i);
+                        HashSet<Integer> indexS = hashMap.get(temp);
+                        if (indexS.contains(i)) {
+                            indexS.remove(i);
+                            if (indexS.isEmpty()) {
+                                indexS.add(i);
                                 continue;
                             }
                         }
-                        if (integers.contains(j)) {
-                            integers.remove(j);
-                            if (integers.isEmpty()) {
-                                integers.add(j);
+                        if (indexS.contains(j)) {
+                            indexS.remove(j);
+                            if (indexS.isEmpty()) {
+                                indexS.add(j);
                                 continue;
                             }
                         }
-
                         int[] ints = {nums[i], nums[j], -temp};
                         Arrays.sort(ints);
                         ArrayList<Integer> list = new ArrayList<>();
@@ -67,42 +92,6 @@ public class Exercise0015_3sum {
             return new ArrayList<>(result);
         }
     }
-
-
-    // 2. O(n^2) 双指针
-//    public List<List<Integer>> threeSum(int[] nums) {
-//        if (nums != null || nums.length < 3) {
-//            List<List<Integer>> result = new ArrayList<>();
-//            //先排序
-//            Arrays.sort(nums);
-//            //夹逼
-//            for (int targetIndex = 0; targetIndex <= nums.length - 3;) {
-//                if (nums[targetIndex] > 0)
-//                    return result;
-//                for (int i = targetIndex + 1, j = nums.length - 1; i < j ;) {
-//                    int temp = nums[targetIndex] + nums[i] + nums[j];
-//                    if (temp < 0)
-//                            i++;
-//                    else if (temp > 0)
-//                            j--;
-//                    else{
-//                        result.add(Arrays.asList(nums[targetIndex], nums[i], nums[j]));
-//                        do {
-//                            i++;
-//                        } while (i < j && nums[i] == nums[i - 1]);
-//                        do {
-//                            j--;
-//                        } while (i < j && nums[j] == nums[j + 1]);
-//                    }
-//                }
-//                do {
-//                    targetIndex++;
-//                } while (targetIndex <= nums.length - 2 && nums[targetIndex] == nums[targetIndex - 1]);
-//            }
-//            return result;
-//        }
-//        return Collections.emptyList();
-//    }
 
     // 1. O(n^3) 暴力解法
 //    public List<List<Integer>> threeSum(int[] nums) {
