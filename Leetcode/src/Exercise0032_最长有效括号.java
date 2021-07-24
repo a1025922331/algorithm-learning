@@ -85,16 +85,16 @@ public class Exercise0032_最长有效括号 {
     // 时间复杂度：O(n)
     // 空间复杂度：O(n)
     // dp数组记录以当前位作为结束的最长有效括号对的长度
-    // 状态转移方程：①当c为'(,dp[i]=0
+    // 状态转移方程：①当c为'(',dp[i]=0
     //            ②当c为')',dp[i]=基础长度2 + 内部连在一起的最长有效括号长度 + 外部连在一起的
-    //            基础长度计算：判断i - dp[i - 1] - 1处是否为'(',若是，则基础长度为2,若不是，则匹配不了，计算下一个
+    //            基础长度计算：判断i - dp[i - 1] - 1处是否为'(',若是，则基础长度为2,若不是，则匹配不了，则dp[i] = 0
     //            内部连在一起的最长有效括号长度：dp[i - 1]
-    //            外部连在一起的最长有效括号长度：dp[i - dp[i - 1] - 2]
+    //            外部连在一起的最长有效括号长度：dp[i - dp[i - 1] - 2] (若存在的话)
     public int longestValidParentheses3(String s) {
         char[] chars = s.toCharArray();
         int[] dp = new int[s.length()];
         int maxLength = 0;
-        for (int i = 0; i < chars.length; i++) {
+        for (int i = 1; i < chars.length; i++) {
             if (chars[i] == ')'
                     && i > 0
                     && (i - dp[i - 1] - 1) >= 0
