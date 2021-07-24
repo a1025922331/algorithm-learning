@@ -24,11 +24,12 @@ public class Exercise0031_下一个排列 {
         if (len == 1) {
             return;
         }
-        // 找到从后往前的第一对顺序对
+        // 找到从后往前的第一对顺序对，找到小数
         int i = len - 2;
         while (i >= 0 && nums[i] >= nums[i + 1]) {
             i--;
         }
+        // 找到大数
         if (i >= 0) {
             int j = len - 1;
             while (nums[i] >= nums[j]) {
@@ -36,6 +37,7 @@ public class Exercise0031_下一个排列 {
             }
             swap(nums, i, j);
         }
+        // 反转
         reverse(nums, i + 1, len - 1);
     }
 
