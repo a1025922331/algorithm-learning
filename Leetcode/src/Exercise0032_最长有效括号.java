@@ -1,5 +1,3 @@
-import org.junit.Test;
-
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.LinkedList;
@@ -9,7 +7,6 @@ import java.util.LinkedList;
  * @Date: 2021/7/24
  */
 public class Exercise0032_最长有效括号 {
-    @Test
     public void test() {
         System.out.println(longestValidParentheses3("()(()()"));
     }
