@@ -1,5 +1,5 @@
 public class Exercise0053_maximum_subarray {
-    public int maxSubArray(int[] nums) {
+    public int maxSubArray1(int[] nums) {
         if (nums.length == 1)
             return nums[0];
         int[] dp = new int[nums.length];
