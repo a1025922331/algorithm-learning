@@ -6,41 +6,31 @@ import java.util.PriorityQueue;
  * @Date: 2021/9/30
  */
 class MedianFinder {
-    public static void main(String[] args) {
-        MedianFinder medianFinder = new MedianFinder();
-        medianFinder.addNum(1);
-        medianFinder.addNum(2);
-        System.out.println(medianFinder.findMedian());
-        medianFinder.addNum(3);
-        System.out.println(medianFinder.findMedian());
-    }
-
-
-    private PriorityQueue<Integer> minHeap;
-    private PriorityQueue<Integer> maxHeap;
+    private PriorityQueue<Integer> maxHeap, minHeap;
 
     /** initialize your data structure here. */
     public MedianFinder() {
-        minHeap = new PriorityQueue<>();
         maxHeap = new PriorityQueue<>((o1, o2) -> o2 - o1);
+        minHeap = new PriorityQueue<>();
     }
 
     public void addNum(int num) {
-        // 如果出现奇数个元素，则中位数放在小根堆里面
-        if (maxHeap.size() >= minHeap.size()) {
-            maxHeap.add(num);
-            minHeap.add(maxHeap.poll());
+        // 如果左多于右边，放右边
+        if (maxHeap.size() > minHeap.size()) {
+            maxHeap.offer(num);
+            minHeap.offer(maxHeap.poll());
         } else {
-            minHeap.add(num);
-            maxHeap.add(minHeap.poll());
+            // 如果左等于右边，放左边
+            minHeap.offer(num);
+            maxHeap.offer(minHeap.poll());
         }
     }
 
     public double findMedian() {
-        if (minHeap.size() > maxHeap.size()) {
-            return minHeap.peek();
+        if (maxHeap.size() == minHeap.size()) {
+            return maxHeap.peek() + minHeap.peek() >> 1;
         } else {
-            return (maxHeap.peek() + minHeap.peek()) * 0.5;
+            return maxHeap.peek();
         }
     }
 }
